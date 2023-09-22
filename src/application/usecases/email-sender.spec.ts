@@ -5,20 +5,16 @@ import { mock } from 'jest-mock-extended'
 const fakeEmailAdapter = mock<SendEmail>()
 
 describe('EmailSender', () => {
-  let sut: EmailSender
-  let input: any
+  const sut: EmailSender = new EmailSender(fakeEmailAdapter)
+  const input: any = {}
 
   beforeEach(() => {
-    sut = new EmailSender(fakeEmailAdapter)
-
-    input = {
-      senderName: 'anySenderName',
-      senderEmail: 'anySenderEmail',
-      receiverName: 'anyReceiverName',
-      receiverEmail: 'anyReceiverEmail',
-      subject: 'anySubject',
-      body: 'anyBody'
-    }
+    input.senderName = 'anySenderName'
+    input.senderEmail = 'anySenderEmail'
+    input.receiverName = 'anyReceiverName'
+    input.receiverEmail = 'anyReceiverEmail'
+    input.subject = 'anySubject'
+    input.body = 'anyBody'
   })
 
   describe('validate', () => {
