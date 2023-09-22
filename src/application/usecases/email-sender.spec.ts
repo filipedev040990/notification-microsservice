@@ -6,7 +6,7 @@ const fakeEmailAdapter = mock<SendEmail>()
 
 describe('EmailSender', () => {
   let sut: EmailSender
-  let input: SendEmail.Input
+  let input: any
 
   beforeEach(() => {
     sut = new EmailSender(fakeEmailAdapter)
@@ -28,5 +28,19 @@ describe('EmailSender', () => {
 
     expect(spy).toHaveBeenCalledTimes(1)
     expect(spy).toHaveBeenCalledWith(input)
+  })
+
+  test('should throws if any required field is falsy', async () => {
+    const requiredFields = ['senderName', 'senderEmail', 'receiverEmail', 'receiverEmail', 'subject', 'body']
+
+    for (const field of requiredFields) {
+      input[field] = null
+
+      const promise = sut.sendEmail(input)
+
+      await expect(promise).rejects.toThrowError(`Missing param: ${field}`)
+
+      input[field] = field
+    }
   })
 })

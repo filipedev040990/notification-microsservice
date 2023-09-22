@@ -10,7 +10,13 @@ export class EmailSender implements SendEmail {
     this.validate(input)
   }
 
-  private validate (input: SendEmail.Input): null | MissingParamError {
+  private validate (input: SendEmail.Input): MissingParamError | null {
+    const requiredFields = ['senderName', 'senderEmail', 'receiverEmail', 'receiverEmail', 'subject', 'body']
+    for (const field of requiredFields) {
+      if (!input[field as keyof SendEmail.Input]) {
+        throw new MissingParamError(field)
+      }
+    }
     return null
   }
 }
