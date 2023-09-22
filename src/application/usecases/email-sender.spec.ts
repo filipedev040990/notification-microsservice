@@ -1,10 +1,9 @@
-import { SendEmail } from '../interfaces/email-sender.interface'
+import { SendEmailInterface } from '../interfaces/email-sender.interface'
 import { EmailSender } from './email-sender'
 import { mock } from 'jest-mock-extended'
 
-const fakeEmailAdapter = mock<SendEmail>()
-
 describe('EmailSender', () => {
+  const fakeEmailAdapter = mock<SendEmailInterface>()
   const sut: EmailSender = new EmailSender(fakeEmailAdapter)
   const input: any = {}
 

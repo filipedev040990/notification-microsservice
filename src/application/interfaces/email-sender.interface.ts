@@ -1,8 +1,8 @@
-export interface SendEmail {
-  sendEmail: (input: SendEmail.Input) => Promise<void>
+export interface SendEmailInterface {
+  sendEmail: (input: SendEmailInterface.Input) => Promise<void>
 }
 
-export namespace SendEmail {
+export namespace SendEmailInterface {
   export type Input = {
     senderName: string
     senderEmail: string

@@ -1,20 +1,20 @@
 import { MissingParamError } from '@/shared/errors'
-import { SendEmail } from '../interfaces/email-sender.interface'
+import { SendEmailInterface } from '../interfaces/email-sender.interface'
 
-export class EmailSender implements SendEmail {
-  constructor (private readonly emailAdapter: SendEmail) {
+export class EmailSender implements SendEmailInterface {
+  constructor (private readonly emailAdapter: SendEmailInterface) {
 
   }
 
-  async sendEmail (input: SendEmail.Input): Promise<void> {
+  async sendEmail (input: SendEmailInterface.Input): Promise<void> {
     this.validate(input)
     await this.emailAdapter.sendEmail(input)
   }
 
-  private validate (input: SendEmail.Input): MissingParamError | null {
+  private validate (input: SendEmailInterface.Input): MissingParamError | null {
     const requiredFields = ['senderName', 'senderEmail', 'receiverEmail', 'receiverEmail', 'subject', 'body']
     for (const field of requiredFields) {
-      if (!input[field as keyof SendEmail.Input]) {
+      if (!input[field as keyof SendEmailInterface.Input]) {
         throw new MissingParamError(field)
       }
     }
