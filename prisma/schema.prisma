@@ -6,6 +6,16 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
+}
+
+model Log {
+  id         String   @id
+  input      String   @db.LongText()
+  output     String   @db.LongText()
+  statusCode Int
+  createdAt  DateTime
+
+  @@map("logs")
 }
