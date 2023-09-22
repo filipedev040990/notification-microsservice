@@ -1,5 +1,5 @@
 import { MissingParamError } from '@/shared/errors'
-import { SendEmailInterface } from '../interfaces/email-sender.interface'
+import { SendEmailInterface } from '../interfaces/email-sender'
 
 export class EmailSender implements SendEmailInterface {
   constructor (private readonly emailAdapter: SendEmailInterface) {

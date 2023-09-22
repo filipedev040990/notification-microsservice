@@ -1,4 +1,4 @@
-import { UUIDGenerateInterface } from '@/application/interfaces/uuid-generate.interface'
+import { UUIDGenerateInterface } from '@/application/interfaces/uuid-generate'
 import { randomUUID } from 'crypto'
 
 export class UUIDGenerator implements UUIDGenerateInterface {

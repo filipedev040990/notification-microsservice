@@ -1,4 +1,4 @@
-import { SendEmailInterface } from '../interfaces/email-sender.interface'
+import { SendEmailInterface } from '../interfaces/email-sender'
 import { EmailSender } from './email-sender'
 import { mock } from 'jest-mock-extended'
 

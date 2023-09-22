@@ -1,5 +1,5 @@
-import { LogRepositoryInterface, SaveLogInterface } from '../interfaces/save-log.interface'
-import { UUIDGenerateInterface } from '../interfaces/uuid-generate.interface'
+import { LogRepositoryInterface, SaveLogInterface } from '../interfaces/save-log'
+import { UUIDGenerateInterface } from '../interfaces/uuid-generate'
 import { SaveLog } from './save-log'
 import { mock } from 'jest-mock-extended'
 import MockDate from 'mockdate'
