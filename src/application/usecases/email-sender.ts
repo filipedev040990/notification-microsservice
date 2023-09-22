@@ -8,6 +8,7 @@ export class EmailSender implements SendEmail {
 
   async sendEmail (input: SendEmail.Input): Promise<void> {
     this.validate(input)
+    await this.emailAdapter.sendEmail(input)
   }
 
   private validate (input: SendEmail.Input): MissingParamError | null {

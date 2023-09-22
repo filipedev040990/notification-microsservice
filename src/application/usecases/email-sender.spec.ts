@@ -21,26 +21,36 @@ describe('EmailSender', () => {
     }
   })
 
-  test('should call sut.validate once and with correct values', async () => {
-    const spy = jest.spyOn(sut as any, 'validate')
+  describe('validate', () => {
+    test('should call sut.validate once and with correct values', async () => {
+      const spy = jest.spyOn(sut as any, 'validate')
 
-    await sut.sendEmail(input)
+      await sut.sendEmail(input)
 
-    expect(spy).toHaveBeenCalledTimes(1)
-    expect(spy).toHaveBeenCalledWith(input)
+      expect(spy).toHaveBeenCalledTimes(1)
+      expect(spy).toHaveBeenCalledWith(input)
+    })
+
+    test('should throws if any required field is falsy', async () => {
+      const requiredFields = ['senderName', 'senderEmail', 'receiverEmail', 'receiverEmail', 'subject', 'body']
+
+      for (const field of requiredFields) {
+        input[field] = null
+
+        const promise = sut.sendEmail(input)
+
+        await expect(promise).rejects.toThrowError(`Missing param: ${field}`)
+
+        input[field] = field
+      }
+    })
   })
+  describe('SendEmail', () => {
+    test('should call EmailAdapter once and with correct values', async () => {
+      await sut.sendEmail(input)
 
-  test('should throws if any required field is falsy', async () => {
-    const requiredFields = ['senderName', 'senderEmail', 'receiverEmail', 'receiverEmail', 'subject', 'body']
-
-    for (const field of requiredFields) {
-      input[field] = null
-
-      const promise = sut.sendEmail(input)
-
-      await expect(promise).rejects.toThrowError(`Missing param: ${field}`)
-
-      input[field] = field
-    }
+      expect(fakeEmailAdapter.sendEmail).toHaveBeenCalledTimes(1)
+      expect(fakeEmailAdapter.sendEmail).toHaveBeenCalledWith(input)
+    })
   })
 })
