@@ -4,9 +4,7 @@ export interface SendEmailInterface {
 
 export namespace SendEmailInterface {
   export type Input = {
-    senderName: string
     senderEmail: string
-    receiverName: string
     receiverEmail: string
     subject: string
     body: string

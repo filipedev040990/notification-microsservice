@@ -8,9 +8,7 @@ describe('EmailSender', () => {
   const input: any = {}
 
   beforeEach(() => {
-    input.senderName = 'anySenderName'
     input.senderEmail = 'anySenderEmail'
-    input.receiverName = 'anyReceiverName'
     input.receiverEmail = 'anyReceiverEmail'
     input.subject = 'anySubject'
     input.body = 'anyBody'
@@ -27,7 +25,7 @@ describe('EmailSender', () => {
     })
 
     test('should throws if any required field is falsy', async () => {
-      const requiredFields = ['senderName', 'senderEmail', 'receiverEmail', 'receiverEmail', 'subject', 'body']
+      const requiredFields = ['senderEmail', 'receiverEmail', 'subject', 'body']
 
       for (const field of requiredFields) {
         input[field] = null

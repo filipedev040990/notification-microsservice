@@ -12,7 +12,7 @@ export class EmailSender implements SendEmailInterface {
   }
 
   private validate (input: SendEmailInterface.Input): MissingParamError | null {
-    const requiredFields = ['senderName', 'senderEmail', 'receiverEmail', 'receiverEmail', 'subject', 'body']
+    const requiredFields = ['senderEmail', 'receiverEmail', 'subject', 'body']
     for (const field of requiredFields) {
       if (!input[field as keyof SendEmailInterface.Input]) {
         throw new MissingParamError(field)
